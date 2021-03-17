@@ -33,67 +33,6 @@ namespace MoodAnalyserUnitTest
             string mood = moodAnalyser.analyseMood();
             Assert.AreEqual("HAPPY", mood);
         }
-      
-         [TestMethod]
-         public void whenMood_IsNull_ShouldReturnHappy()
-         {
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
-            string mood = moodAnalyser.analyseMood(null);
-            Assert.AreEqual("HAPPY", mood);
-         }
-        [TestMethod]
-        public void whenMood_IsNull_ShouldReturn_CustomException_WithExceptionType()
-        {
-            MoodAnalyser moodAnalyser = new MoodAnalyser(null);
-            Assert.ThrowsException<MoodAnalyserException>(() => moodAnalyser.analyseMood());
-        }
-        [TestMethod]
-        public void whenMood_IsEmpty_ShouldReturn_CustomException_WithExceptionType()
-        {
-            MoodAnalyser moodAnalyser = new MoodAnalyser("");
-            Assert.ThrowsException<MoodAnalyserException>(() => moodAnalyser.analyseMood());
-        }
-        [TestMethod]
-        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyserObject()
-        {
-            object expected = new MoodAnalyser();
-            object obj = MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyser1.MoodAnalyser", "MoodAnalyser");
-            expected.Equals(obj);
-        }
-        [TestMethod]
-        public void GivenMoodAnalyseClassName_Improper_ShouldThrow_NO_SUCH_CLASS_Exception()
-        {
-            object expected = new MoodAnalyser();
-            Assert.ThrowsException<MoodAnalyserException>(() => MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyser1.Mood", "MoodAnalyser"));
-        }
-        [TestMethod]
-        public void GivenMoodAnalyseConstructorName_Improper_ShouldThrow_NO_SUCH_METHOD_Exception()
-        {
-            object expected = new MoodAnalyser();
-            Assert.ThrowsException<MoodAnalyserException>(() => MoodAnalyserFactory.CreateMoodAnalyserObject("MoodAnalyser1.Mood", "Mood"));
-        }
-        [TestMethod]
-        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject_UsingParameterizedConstructor()
-        {
-            object expected = new MoodAnalyser("HAPPY");
-            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyser1.MoodAnalyser", "MoodAnalyser", "SAD");
-            expected.Equals(obj);
-        }
-        [TestMethod]
-        public void GivenMoodAnalyseClassName_Improper_ShouldThrow_NO_SUCH_CLASS_Exception_UsingParameterizedConstructor()
-        {
-            object expected = new MoodAnalyser("HAPPY");
-            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyser1.MoodAnalyser", "MoodAnalyser", "SAD");
-            Assert.ThrowsException<MoodAnalyserException>(() => MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyser1.Mood", "MoodAnalyser", "SAD"));
 
-        }
-        [TestMethod]
-        public void GivenMoodAnalyseConstructorName_Improper_ShouldThrow_NO_SUCH_METHOD_Exception_UsingParameterizedConstructor()
-        {
-            object expected = new MoodAnalyser("HAPPY");
-            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyser1.MoodAnalyser", "MoodAnalyser", "SAD");
-            Assert.ThrowsException<MoodAnalyserException>(() => MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyser1.MoodAnalyser", "Mood", "SAD"));
-
-        }
     }
 }
